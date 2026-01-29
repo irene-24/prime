@@ -24,6 +24,7 @@
     "baseUrl": "./",
     "paths": {
       "@/enums/*": ["src/common/enums/*"],
+      "@/modules/*": ["src/modules/*"],
       "@/constants/*": ["src/common/constants/*"],
       "@/utils/*": ["src/common/utils/*"],
       "@/interfaces/*": ["src/common/interfaces/*"],
