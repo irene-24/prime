@@ -1,4 +1,4 @@
-export const enum CreditTransactionType {
+export enum CreditTransactionType {
   PURCHASE = 'PURCHASE',
   BOOKING = 'BOOKING',
   REFUND = 'REFUND',

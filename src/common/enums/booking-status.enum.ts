@@ -1,4 +1,4 @@
-export const enum BookingStatus {
+export enum BookingStatus {
   PENDING = 'PENDING',
   CONFIRMED = 'CONFIRMED',
   CANCELLED = 'CANCELLED',
