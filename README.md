@@ -1,63 +1,74 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Mentoring Platform Backend
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Overview
+This is a NestJS + TypeORM backend for a mentoring/booking platform. It manages users (mentees/mentors), credit packages, bookings, and credit transactions with robust business logic and transactional safety.
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Setup Instructions
 
-## Project setup
-
-```bash
-$ npm install
+### 1. Clone the Repository
+```
+git clone <your-repo-url>
+cd <repo-folder>
 ```
 
-## Compile and run the project
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+### 2. Install Dependencies
+```
+pnpm install
 ```
 
-## Run tests
+### 3. Configure Environment
+- Copy `.env.example` to `.env.local` and set your database connection string (DATABASE_URL) and any other required variables.
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+### 4. Run Database Migrations & Seed Data
 ```
+pnpm run seed
+```
+This seeds users, mentors, mentees, credit packages, and user credits for testing.
 
-## Deployment
+### 5. Start the Application
+```
+pnpm start:dev
+```
+- The API will be available at `http://localhost:<PORT>/api` (default port: 8272).
+
+---
+
+## Architectural Decisions
+- **NestJS + TypeORM**: Modular structure for scalability and maintainability.
+- **Numeric Transformer**: Used for all decimal columns to avoid JS/TS floating point issues (see `typeorm-decimal.transformer.ts`).
+- **API Prefix**: All endpoints are prefixed with `/api` for clarity and future extensibility.
+- **Seed Script**: Included for easy local development and testing.
+- **Repository Pattern**: All services use injected repositories for non-transactional logic; DataSource is used only for transactions.
+- **Custom Guards**: Simulated authentication via `x-user-id` header and a custom guard.
+- **Global Exception Filter**: Consistent error responses across the API.
+- **DTO Validation**: All input DTOs use `class-validator` for robust validation.
+
+---
+
+## Assumptions
+- **Authentication**: Simulated via `x-user-id` header; no real auth implemented.
+- **Credit Packages**: Only active packages are available for purchase.
+- **Booking Status**: New bookings start as `PENDING`.
+- **Refund Logic**: Follows business rules for full/partial/no refund based on cancellation timing.
+- **Mentor Availability**: Double-booking is prevented via DB transaction and locking.
+- **Price Storage**: Credit package prices are stored in integer cents for accuracy.
+- **User Roles**: Only users with the correct role can perform certain actions (e.g., only mentees can book/cancel).
+
+---
+
+## Notes
+- Numeric transformer is used to avoid type issues with decimals in JS/TS.
+- All endpoints are under the `/api` prefix.
+- Seed script is provided for local development.
+- Cora: (If this refers to a tool or convention, clarify here or remove if not relevant.)
+
+---
+
+## Contact
+For questions or issues, please contact the maintainer.
 
 When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
 

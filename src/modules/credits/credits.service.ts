@@ -16,6 +16,8 @@ export class CreditsService {
     private readonly creditPackageRepository: Repository<CreditPackage>,
     @InjectRepository(CreditTransaction)
     private readonly creditTransactionRepository: Repository<CreditTransaction>,
+    @InjectRepository(UserCredit)
+    private readonly userCreditRepository: Repository<UserCredit>,
   ) {}
 
   async findAllPackages(): Promise<CreditPackage[]> {
@@ -59,9 +61,7 @@ export class CreditsService {
   }
 
   async getBalance(userId: string) {
-    const userCredit = await this.dataSource
-      .getRepository(UserCredit)
-      .findOneBy({ userId });
+    const userCredit = await this.userCreditRepository.findOneBy({ userId });
     if (!userCredit) {
       throw new NotFoundException('User credit record not found');
     }

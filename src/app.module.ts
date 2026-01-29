@@ -8,7 +8,7 @@ import { UsersModule } from './modules/users/users.module';
 import { BookingsModule } from './modules/bookings/bookings.module';
 import { CreditsModule } from './modules/credits/credits.module';
 import { User } from './modules/users/entities/user.entity';
-import { Booking } from './modules/bookings/booking.entity';
+import { Booking } from './modules/bookings/entities/booking.entity';
 import { CreditTransaction } from './modules/credits/entities/credit-transaction.entity';
 import { UserCredit } from './modules/credits/entities/user-credit.entity';
 import { CreditPackage } from './modules/credits/entities/credit-package.entity';
