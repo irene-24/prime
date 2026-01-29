@@ -1,0 +1,5 @@
+export const BOOKING_RULES = {
+  BASE_MINUTES: 30,
+  CREDITS_PER_UNIT: 1,
+  MIN_LEAD_TIME_HOURS: 24,
+};
