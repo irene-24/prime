@@ -27,11 +27,17 @@ npm run seed
 ```
 This seeds users (mentors and mentees) and credit packages for testing.
 
+
 ### 5. Start the Application
 ```
 npm start:dev
 ```
 - The API will be available at `http://localhost:<PORT>/api` (default port: 8272).
+
+### 6. API Documentation (Swagger)
+Interactive API docs are available via Swagger UI:
+
+- Visit: `http://localhost:<PORT>/api/docs`
 
 ---
 
@@ -62,3 +68,9 @@ npm start:dev
 - Numeric transformer is used to avoid type issues with decimals in JS/TS.
 - All endpoints are under the `/api` prefix.
 - Seed script is provided for local development.
+
+
+## Future Improvements
+- **Trim API Responses**: Return only necessary fields (e.g., IDs instead of full related objects) to reduce payload size and improve performance.
+- **Redis Integration**: Add Redis caching for frequently accessed or rarely changing data (e.g., credit packages) to improve response times.
+- **Testing**: Add comprehensive unit and integration tests for all business logic, especially booking and refund flows.
