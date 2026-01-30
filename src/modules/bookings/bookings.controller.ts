@@ -75,19 +75,27 @@ export class BookingsController {
     status: 200,
     description: 'Paginated list of bookings',
     schema: {
-      example: [
-        {
-          id: 'uuid',
-          menteeId: 'uuid',
-          mentorId: 'uuid',
-          scheduledAt: '2026-01-30T00:00:00.000Z',
-          duration: 60,
-          creditsUsed: 2,
-          status: 'PENDING',
-          createdAt: '2026-01-30T00:00:00.000Z',
-          updatedAt: '2026-01-30T00:00:00.000Z',
+      example: {
+        data: [
+          {
+            id: 'uuid',
+            menteeId: 'uuid',
+            mentorId: 'uuid',
+            scheduledAt: '2026-01-30T00:00:00.000Z',
+            duration: 60,
+            creditsUsed: 2,
+            status: 'PENDING',
+            createdAt: '2026-01-30T00:00:00.000Z',
+            updatedAt: '2026-01-30T00:00:00.000Z',
+          },
+        ],
+        meta: {
+          total: 1,
+          page: 1,
+          limit: 10,
+          totalPages: 1,
         },
-      ],
+      },
     },
   })
   async getBookings(

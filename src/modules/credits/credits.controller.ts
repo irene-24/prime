@@ -72,12 +72,19 @@ export class CreditsController {
             id: '98ca1fd8-2d3b-4762-96a6-9051e9fb0e32',
             userId: '26b44183-6942-4f0d-9e1b-e929110a5001',
             amount: 2,
+            type: 'REFUND',
             referenceId: '035fcec2-d691-4c1a-8fbe-402af517c451',
             description:
               'Refund (100%) for cancelled booking 035fcec2-d691-4c1a-8fbe-402af517c451',
             createdAt: '2026-01-29T23:50:54.101Z',
           },
         ],
+        meta: {
+          total: 1,
+          page: 1,
+          limit: 10,
+          totalPages: 1,
+        },
       },
     },
   })
