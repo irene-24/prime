@@ -14,7 +14,9 @@ import { BookingsService } from './bookings.service';
 import { CreateBookingDto } from './dto/create-booking.dto';
 import { UserIdGuard } from '@/common/guards/user-id.guard';
 import { GetBookingsDto } from './dto/get-bookings.dto';
+import { ApiSecurity } from '@nestjs/swagger';
 
+@ApiSecurity('x-user-id')
 @UseGuards(UserIdGuard)
 @Controller('bookings')
 export class BookingsController {

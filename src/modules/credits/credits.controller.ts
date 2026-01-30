@@ -12,7 +12,9 @@ import { UserIdGuard } from '../../common/guards/user-id.guard';
 import { CreditsService } from './credits.service';
 import { PurchaseCreditsDto } from './dto/purchase-credits.dto';
 import { PaginationQueryDto } from '@/common/dto/pagination-query.dto';
+import { ApiSecurity } from '@nestjs/swagger';
 
+@ApiSecurity('x-user-id')
 @UseGuards(UserIdGuard)
 @Controller('credits')
 export class CreditsController {
